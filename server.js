@@ -4,8 +4,14 @@ var redisURL = url.parse(process.env.REDISCLOUD_URL);
 var client = redis.createClient(redisURL.port, redisURL.hostname, {
 	no_ready_check: true
 });
+// Setup the Express.js server
 var express = require('express');
-var io = require('socket.io')
+var app = express();
+var http = require('http');
+var server = http.createServer(app);
+var io = require('socket.io').listen(server);
+
+app.use(express.logger());
 
 client.auth(redisURL.auth.split(":")[1]);
 
@@ -14,9 +20,7 @@ io.configure(function() {
 	io.set("polling duration", 10);
 });
 
-// Setup the Express.js server
-var app = express.createServer();
-app.use(express.logger());
+
 
 if (process.argv[2] === 'dist') {
 	app.use(express.static(__dirname + "/dist"));
@@ -31,7 +35,7 @@ io.sockets.on('connection', function(socket) {
 	});
 	socket.on('validate', function(data) {
 		client.sismember('engdict', data.value, function(err, reply) {
-			socket.emit( 'message', { reply })
+			socket.emit( 'message', { 'value': reply.toString() })
 			console.log(reply.toString()); // Will print `bar`
 		});
 	});
@@ -39,4 +43,4 @@ io.sockets.on('connection', function(socket) {
 
 var port = process.env.PORT || 3000;
 console.log("listening on http://localhost:" + port);
-io.listen(app.listen(port));
+app.listen(port);
