@@ -3,10 +3,10 @@
   <p>Validating against entries in /usr/share/dict</p>
   
   <form>
-  <div class="control-group">
-  	<label class="control-label">Label name</label>
+  <div class="control-group" ng-class="lookupError">
+  	<label class="control-label">Dictionary Check Value:</label>
   	<div class="controls">
-    <input type="text" placeholder="Type something…">
+    <input type="text" placeholder="Type something…" ng-model="checkValue" ng-change="validCheck()">
     </div>
     </div>
   </form>

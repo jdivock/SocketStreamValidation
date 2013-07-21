@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('DictionaryValidationStreamApp', [])
+angular.module('SocketStreamValidation', ['btford.socket-io'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
