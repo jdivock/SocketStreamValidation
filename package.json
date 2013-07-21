@@ -2,7 +2,9 @@
   "name": "dictionaryvalidationstream",
   "version": "0.0.0",
   "dependencies": {
-    "redis": "~0.8.4"
+    "redis": "~0.8.4",
+    "socket.io": "~0.9.16",
+    "express": "~3.3.4"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
