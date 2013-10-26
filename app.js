@@ -20,7 +20,8 @@ var client = redis.createClient(redisURL.port, redisURL.hostname, {
 /**
  * Configuration
  */
- client.auth(redisURL.auth.split(":")[1]);
+ // console.log( redisURL );
+ // client.auth(redisURL.auth.split(":")[1]);
 
 // io.configure(function() {
 // 	io.set("transports", ["xhr-polling"]);
