@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('SocketStreamValidation', ['btford.socket-io'])
+angular.module('SocketStreamValidation', ['ngRoute', 'btford.socket-io'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
